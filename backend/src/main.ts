@@ -1,10 +1,11 @@
+import 'module-alias/register';
+
 import fastify from 'fastify';
+import routes from '@routes';
 
-const server = fastify();
+const server = fastify({ logger: true });
 
-server.get('/ping', async (req, res) => {
-  return 'pong\n';
-});
+server.register(routes);
 
 server.listen({ port: 8080 }, (err, address) => {
   if (err) {
