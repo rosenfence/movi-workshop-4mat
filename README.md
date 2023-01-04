@@ -44,4 +44,4 @@ $ yarn start
 
 ### Backend
 
-- Fastify <br/>Fast and low overhead web framework for Node.js 
+- Fastify <br/>Fast and low overhead web framework for Node.js
