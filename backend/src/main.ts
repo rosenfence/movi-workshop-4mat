@@ -1,5 +1,3 @@
-import 'module-alias/register';
-
 import fastify from 'fastify';
 import routes from '@routes';
 
