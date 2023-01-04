@@ -21,7 +21,7 @@
 ```bash
 $ cd backend
 $ yarn add
-$ yarn run
+$ yarn start
 ```
 
 > 혼자 만들면 엄청 귀찮았을 거 같은데 새던님 붙잡고 프론트엔드 맡겨서 다행 🤣
