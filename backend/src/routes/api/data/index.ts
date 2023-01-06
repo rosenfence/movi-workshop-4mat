@@ -31,6 +31,17 @@ const dataRoute: FastifyPluginAsync = async (fastify) => {
       reply.code(200).header('Content-Type', 'application/json; charset=utf-8').send(body);
     }
   });
+
+  fastify.post('/initialize', async (request, reply) => {
+    testService.clearDatas();
+    testService.initialize();
+    reply.code(200).header('Content-Type', 'application/json; charset=utf-8').send(testService.getDatas());
+  });
+
+  fastify.post('/reset', async (request, reply) => {
+    testService.clearDatas();
+    reply.code(204);
+  });
 };
 
 export default dataRoute;
