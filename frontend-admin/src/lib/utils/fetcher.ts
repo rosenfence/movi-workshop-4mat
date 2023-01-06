@@ -15,7 +15,7 @@ export type Data = Omit<DataResponse, 'result'> & {
 };
 
 const fetcher = async () => {
-  const response = await fetch('/api/data');
+  const response = await fetch(`${import.meta.env.VITE_BACKEND}/api/data`);
   const data: DataResponse[] = await response.json();
 
   let [a, b, c, d, e] = [-11, -11, -11, -11, -11];

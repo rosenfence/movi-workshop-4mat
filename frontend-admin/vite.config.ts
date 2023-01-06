@@ -2,13 +2,14 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig, loadEnv } from 'vite';
 
 export default ({ mode }: any) => {
-  const env = loadEnv(mode, process.cwd(), '');
+  process.env = { ...process.env, ...loadEnv(mode, process.cwd(), '') };
+  console.log(process.env);
 
   return defineConfig({
     plugins: [sveltekit()],
     server: {
       proxy: {
-        '/api': env.API_ENDPOINT as string,
+        '/api': process.env.API_ENDPOINT as string,
       },
     },
   });
