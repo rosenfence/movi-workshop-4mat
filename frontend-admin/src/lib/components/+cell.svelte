@@ -15,7 +15,7 @@
     {rowspan}><slot /></th
   >
 {:else}
-  <td class={clsx('text-gray-700 text-center border select-none', highlight && 'font-bold bg-[#E5F3E6]', className)}
+  <td class={clsx('text-gray-700 text-center border select-none', highlight && 'font-bold bg-orange-100', className)}
     ><slot /></td
   >
 {/if}
