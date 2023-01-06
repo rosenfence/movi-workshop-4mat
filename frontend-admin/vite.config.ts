@@ -1,8 +1,26 @@
 import { sveltekit } from '@sveltejs/kit/vite';
-import type { UserConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 
-const config: UserConfig = {
-	plugins: [sveltekit()]
+export default ({ mode }: any) => {
+  const env = loadEnv(mode, process.cwd(), '');
+
+  return defineConfig({
+    plugins: [sveltekit()],
+    server: {
+      proxy: {
+        '/api': env.API_ENDPOINT as string,
+      },
+    },
+  });
 };
 
-export default config;
+// const config: UserConfig = {
+//   plugins: [sveltekit()],
+//   server: {
+//     proxy: {
+//       '/api': 'http://127.0.0.1:8080',
+//     },
+//   },
+// };
+
+// export default config;
