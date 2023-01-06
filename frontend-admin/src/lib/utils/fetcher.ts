@@ -15,10 +15,10 @@ export type Data = Omit<DataResponse, 'result'> & {
 };
 
 const fetcher = async () => {
-  const response = await fetch('https://70a6-175-207-181-248.ngrok.io/api/data');
+  const response = await fetch('/api/data');
   const data: DataResponse[] = await response.json();
 
-  let [a, b, c, d, e] = [0, 0, 0, 0, 0];
+  let [a, b, c, d, e] = [-11, -11, -11, -11, -11];
 
   let result = data.map((v) => {
     const name = v.name;
