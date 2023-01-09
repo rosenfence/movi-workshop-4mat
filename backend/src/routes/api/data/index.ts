@@ -20,7 +20,7 @@ const dataRoute: FastifyPluginAsync = async (fastify) => {
       }).required(),
     });
 
-    const body = request.body as Data;
+    const body = JSON.parse(request.body as string) as Data;
 
     const { error } = schema.validate(body);
     if (error) {
