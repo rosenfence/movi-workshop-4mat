@@ -25,6 +25,27 @@ class TestService {
     this.db.push(data);
     return data;
   }
+
+  initialize() {
+    for (let i = 0; i < 5; i++) {
+      this.addData({
+        name: 'Test',
+        result: {
+          partA: [
+            Math.floor(Math.random() * 10) + 1,
+            Math.floor(Math.random() * 10) + 1,
+            Math.floor(Math.random() * 10) + 1,
+            Math.floor(Math.random() * 10) + 1,
+          ],
+          partB: Math.floor(Math.random() * 10) + 1,
+        },
+      });
+    }
+  }
+
+  clearDatas() {
+    this.db = [];
+  }
 }
 
 export default TestService;
