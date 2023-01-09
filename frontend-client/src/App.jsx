@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import constants from './constants';
-import { Finish, PartA, Start } from './components';
+import { Finish, PartA, PartB, Start } from './components';
 import { Header, Layout } from './components/common';
 
 const initValue = {
@@ -24,8 +24,8 @@ function App() {
   };
 
   /**
-   * @param type 구간별 식별값
-   * @param value
+   * @param {string} type 구간별 식별값
+   * @param {any} value
    * @example
    * onChangeResult('name', '새던');
    * onChangeResult('partA', [1, 2, 3, 4]);
@@ -58,11 +58,12 @@ function App() {
 
   useEffect(() => {
     // 카카오 100vh 문제 해결
-    function setSize() {
+    const setSize = () => {
       let vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
-    }
+    };
     setSize();
+
     window.addEventListener('resize', setSize);
     return () => {
       window.removeEventListener('resize', setSize);
@@ -77,7 +78,9 @@ function App() {
         {step === 1 && (
           <PartA onChangeResult={handleChangeResult} totalQuestions={constants.STEP_ONE_QUESTIONS_COUNT} />
         )}
-        {/* {step === 2 && <PartB onChangeResult={handleChangeResult} totalQuestions={constants.STEP_TWO_QUESTIONS_COUNT} />} */}
+        {step === 2 && (
+          <PartB onChangeResult={handleChangeResult} totalQuestions={constants.STEP_TWO_QUESTIONS_COUNT} />
+        )}
         {step === 3 && <Finish result={result} onChangeResult={handleChangeResult} />}
       </main>
     </Layout>

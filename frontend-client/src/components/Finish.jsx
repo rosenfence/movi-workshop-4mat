@@ -1,10 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Button, Lottie } from './common';
 
 const Finish = ({ result, onChangeResult }) => {
+  const called = useRef(false);
+
   const handleClick = () => onChangeResult('reset');
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (called.current) return;
+    called.current = true;
+
+    fetch(`${process.env.REACT_APP_BACKEND}/api/data`, {
+      method: 'POST',
+      body: JSON.stringify(result),
+    });
+  }, []);
 
   return (
     <>
