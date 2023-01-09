@@ -54,7 +54,11 @@ const PartA = ({ onChangeResult, totalQuestions }) => {
           PART A ({`${(questionNumber + 1).toString().padStart(2, '0')}`} / {totalQuestions.toString().padStart(2, '0')}
           )
         </p>
-        <p className="mb-4 text-gray-700">본인과 가장 비슷한 질문부터 순서대로 클릭해주세요.</p>
+        <p className="mb-4 text-gray-700 text-center">
+          본인과 가장 비슷한 항목부터 순서대로 클릭해주세요.
+          <br />
+          (클릭한 순서대로 4, 3, 2, 1)
+        </p>
         <p className="text-2xl font-medium">{strings['partA'][questionNumber]?.title}</p>
       </div>
       <div className="mb-4">
