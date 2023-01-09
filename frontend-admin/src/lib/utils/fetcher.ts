@@ -18,42 +18,29 @@ const fetcher = async () => {
   const response = await fetch(`${import.meta.env.VITE_BACKEND}/api/data`);
   const data: DataResponse[] = await response.json();
 
-  let [a, b, c, d, e] = [-11, -11, -11, -11, -11];
-
-  let result = data.map((v) => {
+  const result = data.map((v) => {
     const name = v.name;
     const partA = [...v.result.partA];
     const partB = v.result.partB;
 
-    [a, b, c, d, e] = [
-      Math.max(a, partA[0]),
-      Math.max(b, partA[1]),
-      Math.max(c, partA[2]),
-      Math.max(d, partA[3]),
-      Math.max(e, partB),
-    ];
+    // 각 테스터별로 높은 점수 상위 2개 하이라이트
+    const tempPartA = [...partA];
+    tempPartA.sort((a, b) => b - a);
+    const [first, second] = tempPartA;
 
     return {
       name,
       result: {
         partA: [
-          { value: partA[0], isTop: false },
-          { value: partA[1], isTop: false },
-          { value: partA[2], isTop: false },
-          { value: partA[3], isTop: false },
+          { value: partA[0], isTop: [first, second].includes(partA[0]) },
+          { value: partA[1], isTop: [first, second].includes(partA[1]) },
+          { value: partA[2], isTop: [first, second].includes(partA[2]) },
+          { value: partA[3], isTop: [first, second].includes(partA[3]) },
         ],
-        partB: { value: partB, isTop: false },
+        partB: { value: partB },
       },
     };
   });
-
-  result = result.map((v) => ({
-    ...v,
-    result: {
-      partA: v.result.partA.map((v, i) => ({ ...v, isTop: v.value === [a, b, c, d][i] })),
-      partB: { ...v.result.partB, isTop: v.result.partB.value === e },
-    },
-  }));
 
   return result;
 };
