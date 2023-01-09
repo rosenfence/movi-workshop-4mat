@@ -3,7 +3,6 @@ import { defineConfig, loadEnv } from 'vite';
 
 export default ({ mode }: any) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd(), '') };
-  console.log(process.env);
 
   return defineConfig({
     plugins: [sveltekit()],
