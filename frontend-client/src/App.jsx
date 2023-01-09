@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { RecoilRoot } from 'recoil';
 import { Header, Layout, PartA } from './components';
 import constants from './constants';
 
@@ -21,10 +20,16 @@ function App() {
         setResult((prev) => ({ ...prev, [type]: value }));
         break;
       case 'partA':
-        setResult((prev) => ({ ...prev, result: { ...prev.result, [type]: value } }));
+        setResult((prev) => ({
+          ...prev,
+          result: { ...prev.result, [type]: value },
+        }));
         break;
       case 'partB':
-        setResult((prev) => ({ ...prev, result: { ...prev.result, [type]: value } }));
+        setResult((prev) => ({
+          ...prev,
+          result: { ...prev.result, [type]: value },
+        }));
         break;
     }
     setStep(step + 1);
@@ -38,16 +43,19 @@ function App() {
   // Finish 컴포넌트 안에서 해당 결과를 바로 api 요청 태우면 될 듯
 
   return (
-    <RecoilRoot>
-      <Layout>
-        <Header />
-        {/* {step === 0 && <Start onChangeResult={handleChangeResult} />} */}
-        {step === 1 && <PartA onChangeResult={handleChangeResult} totalQuestions={constants.STEP_ONE_QUESTIONS_COUNT} />}
-        {/* {step === 2 && <PartB onChangeResult={handleChangeResult} totalQuestions={constants.STEP_TWO_QUESTIONS_COUNT} />} */}
-        {/* {step === 3 && <Finish result={result} />} */}
-        {/* <Test /> */}
-      </Layout>
-    </RecoilRoot>
+    <Layout>
+      <Header />
+      {/* {step === 0 && <Start onChangeResult={handleChangeResult} />} */}
+      {step === 1 && (
+        <PartA
+          onChangeResult={handleChangeResult}
+          totalQuestions={constants.STEP_ONE_QUESTIONS_COUNT}
+        />
+      )}
+      {/* {step === 2 && <PartB onChangeResult={handleChangeResult} totalQuestions={constants.STEP_TWO_QUESTIONS_COUNT} />} */}
+      {/* {step === 3 && <Finish result={result} />} */}
+      {/* <Test /> */}
+    </Layout>
   );
 }
 
