@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Header, Layout, PartA } from './components';
 import constants from './constants';
 
@@ -42,16 +42,24 @@ function App() {
 
   // Finish 컴포넌트 안에서 해당 결과를 바로 api 요청 태우면 될 듯
 
+  useEffect(() => {
+    // 카카오 100vh 문제 해결
+    function setSize() {
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    setSize();
+    window.addEventListener('resize', setSize);
+    return () => {
+      window.removeEventListener('resize', setSize);
+    };
+  }, []);
+
   return (
     <Layout>
       <Header />
       {/* {step === 0 && <Start onChangeResult={handleChangeResult} />} */}
-      {step === 1 && (
-        <PartA
-          onChangeResult={handleChangeResult}
-          totalQuestions={constants.STEP_ONE_QUESTIONS_COUNT}
-        />
-      )}
+      {step === 1 && <PartA onChangeResult={handleChangeResult} totalQuestions={constants.STEP_ONE_QUESTIONS_COUNT} />}
       {/* {step === 2 && <PartB onChangeResult={handleChangeResult} totalQuestions={constants.STEP_TWO_QUESTIONS_COUNT} />} */}
       {/* {step === 3 && <Finish result={result} />} */}
       {/* <Test /> */}
