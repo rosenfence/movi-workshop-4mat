@@ -52,7 +52,7 @@ const PartB = ({ onChangeResult, totalQuestions }) => {
           PART B ({`${(questionNumber + 1).toString().padStart(2, '0')}`} / {totalQuestions.toString().padStart(2, '0')}
           )
         </p>
-        <p className="mb-4 text-gray-700">본인을 더 잘 표현하는 것을 클릭해주세요.</p>
+        <p className="mb-4 text-gray-700">본인을 더 잘 표현하는 항목을 클릭해주세요.</p>
         <p className="text-2xl font-medium">{strings['partB'][questionNumber]?.title}</p>
       </div>
       <div className="mb-4">
