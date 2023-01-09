@@ -1,5 +1,5 @@
 <script>
-  import QRImage from '$lib/assets/qr.png';
+  import QRImage from '$lib/assets/qrcode.png';
 </script>
 
 <svelte:head>
