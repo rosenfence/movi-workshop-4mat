@@ -1,7 +1,4 @@
-import Header from './Header';
-import Layout from './Layout';
-import Option from './Option';
-import PartA from './PartA';
-import Progress from './Progress';
-
-export { Header, Layout, Option, PartA, Progress };
+export { default as Start } from './Start';
+export { default as PartA } from './PartA';
+export { default as PartB } from './PartB';
+export { default as Finish } from './Finish';

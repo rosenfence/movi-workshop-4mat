@@ -1,19 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import { Header, Layout, PartA } from './components';
 import constants from './constants';
+import { Finish, PartA, Start } from './components';
+import { Header, Layout } from './components/common';
+
+const initValue = {
+  name: '',
+  result: {
+    partA: [0, 0, 0, 0],
+    partB: 0,
+  },
+};
 
 function App() {
-  const [step, setStep] = useState(1); //임시로 1
-  const [result, setResult] = useState({
-    name: '',
-    result: {
-      partA: [0, 0, 0, 0],
-      partB: 0,
-    },
-  });
+  const [step, setStep] = useState(0);
+  const [result, setResult] = useState(initValue);
 
-  // type = "name" | "partA" | "partB"
-  // value = 해당 타입에 맞는 값들
+  /**
+   * 상태 초기화
+   */
+  const reset = () => {
+    setStep(0);
+    setResult(initValue);
+  };
+
+  /**
+   * @param type 구간별 식별값
+   * @param value
+   * @example
+   * onChangeResult('name', '새던');
+   * onChangeResult('partA', [1, 2, 3, 4]);
+   * onChangeResult('partB', 5);
+   * onChangeResult('reset');
+   */
   const handleChangeResult = (type, value) => {
     switch (type) {
       case 'name':
@@ -31,16 +49,12 @@ function App() {
           result: { ...prev.result, [type]: value },
         }));
         break;
+      default:
+        break;
     }
-    setStep(step + 1);
+    if (type !== 'reset') setStep(step + 1);
+    else reset();
   };
-
-  // 각 구간에서 호출해야 하는 형태
-  // onChangeResult('name', '새던');
-  // onChangeResult('partA', [1, 2, 3, 4]);
-  // onChangeResult('partB', 5);
-
-  // Finish 컴포넌트 안에서 해당 결과를 바로 api 요청 태우면 될 듯
 
   useEffect(() => {
     // 카카오 100vh 문제 해결
@@ -57,12 +71,15 @@ function App() {
 
   return (
     <Layout>
-      <Header />
-      {/* {step === 0 && <Start onChangeResult={handleChangeResult} />} */}
-      {step === 1 && <PartA onChangeResult={handleChangeResult} totalQuestions={constants.STEP_ONE_QUESTIONS_COUNT} />}
-      {/* {step === 2 && <PartB onChangeResult={handleChangeResult} totalQuestions={constants.STEP_TWO_QUESTIONS_COUNT} />} */}
-      {/* {step === 3 && <Finish result={result} />} */}
-      {/* <Test /> */}
+      {step !== 3 && <Header />}
+      <main className="h-full flex flex-col">
+        {step === 0 && <Start onChangeResult={handleChangeResult} />}
+        {step === 1 && (
+          <PartA onChangeResult={handleChangeResult} totalQuestions={constants.STEP_ONE_QUESTIONS_COUNT} />
+        )}
+        {/* {step === 2 && <PartB onChangeResult={handleChangeResult} totalQuestions={constants.STEP_TWO_QUESTIONS_COUNT} />} */}
+        {step === 3 && <Finish result={result} onChangeResult={handleChangeResult} />}
+      </main>
     </Layout>
   );
 }
