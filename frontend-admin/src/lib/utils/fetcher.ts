@@ -10,7 +10,7 @@ export type Data = Omit<DataResponse, 'result'> & {
   name: string;
   result: {
     partA: { value: number; isTop: boolean }[];
-    partB: { value: number; isTop: boolean };
+    partB: { value: number; isTop?: boolean };
   };
 };
 

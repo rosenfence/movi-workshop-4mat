@@ -33,8 +33,8 @@
       </tr>
       <tr class="h-10">
         <Cell type="head" className="w-36">O</Cell>
-        <Cell type="head" className="w-36">△</Cell>
         <Cell type="head" className="w-36">ㅁ</Cell>
+        <Cell type="head" className="w-36">△</Cell>
         <Cell type="head" className="w-36">☆</Cell>
         <Cell type="head" className="w-36">합</Cell>
       </tr>
