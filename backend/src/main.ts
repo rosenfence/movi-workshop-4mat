@@ -5,7 +5,7 @@ import routes from '@routes';
 const server = fastify({ logger: true });
 
 (async () => {
-  server.register(cors);
+  server.register(cors, {origin: "*"});
   server.register(routes);
 
   server.listen({ port: 8080 }, (err, address) => {
